@@ -1,0 +1,7 @@
+{
+  "id": "frei0r-plugin",
+  "name": "Frei0r plugin",
+  "description": "Tactview plugin for frei0r",
+  "author": "helospark",
+  "version": "${project.version}"
+}
