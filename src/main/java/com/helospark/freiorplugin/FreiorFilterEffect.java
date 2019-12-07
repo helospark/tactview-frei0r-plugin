@@ -102,7 +102,7 @@ public class FreiorFilterEffect extends StatelessVideoEffect {
     }
 
     @Override
-    public void initializeValueProvider() {
+    protected void initializeValueProviderInternal() {
         keyframeableEffects = new ArrayList<>();
 
         for (FreiorParameter parameter : parameters) {
@@ -113,7 +113,7 @@ public class FreiorFilterEffect extends StatelessVideoEffect {
     }
 
     @Override
-    public List<ValueProviderDescriptor> getValueProviders() {
+    protected List<ValueProviderDescriptor> getValueProvidersInternal() {
         List<ValueProviderDescriptor> result = new ArrayList<>();
         for (int i = 0; i < keyframeableEffects.size(); ++i) {
             result.add(ValueProviderDescriptor.builder()
