@@ -10,6 +10,7 @@ import com.helospark.freiorplugin.nativelibrary.FreiorParameter;
 import com.helospark.freiorplugin.nativelibrary.RenderRequest;
 import com.helospark.tactview.core.clone.CloneRequestMetadata;
 import com.helospark.tactview.core.save.LoadMetadata;
+import com.helospark.tactview.core.save.SaveMetadata;
 import com.helospark.tactview.core.timeline.StatelessEffect;
 import com.helospark.tactview.core.timeline.StatelessVideoEffect;
 import com.helospark.tactview.core.timeline.TimelineInterval;
@@ -75,8 +76,8 @@ public class FreiorFilterEffect extends StatelessVideoEffect {
     }
 
     @Override
-    protected void generateSavedContentInternal(Map<String, Object> result) {
-        super.generateSavedContentInternal(result);
+    protected void generateSavedContentInternal(Map<String, Object> result, SaveMetadata saveMetadatat) {
+        super.generateSavedContentInternal(result, saveMetadatat);
         result.put(PLUGIN_NAME_KEY, pluginName);
         result.put(PARAMETERS_KEY, keyframeableEffects);
     }
