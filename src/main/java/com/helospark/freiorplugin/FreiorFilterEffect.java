@@ -56,7 +56,7 @@ public class FreiorFilterEffect extends StatelessVideoEffect {
 
         List<KeyframeableEffect> clonedKeyframeableEffects = new ArrayList<>();
         for (var entry : effect.keyframeableEffects) {
-            clonedKeyframeableEffects.add(entry.deepClone());
+            clonedKeyframeableEffects.add(entry.deepClone(cloneRequestMetadata));
         }
     }
 

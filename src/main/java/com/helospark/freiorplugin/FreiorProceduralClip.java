@@ -66,7 +66,7 @@ public class FreiorProceduralClip extends ProceduralVisualClip {
 
         List<KeyframeableEffect> clonedKeyframeableEffects = new ArrayList<>();
         for (var entry : clip.keyframeableEffects) {
-            clonedKeyframeableEffects.add(entry.deepClone());
+            clonedKeyframeableEffects.add(entry.deepClone(cloneRequestMetadata));
         }
     }
 
