@@ -24,6 +24,7 @@ import com.helospark.tactview.core.timeline.effect.interpolation.provider.ColorP
 import com.helospark.tactview.core.timeline.effect.interpolation.provider.DoubleProvider;
 import com.helospark.tactview.core.timeline.effect.interpolation.provider.PointProvider;
 import com.helospark.tactview.core.timeline.effect.interpolation.provider.StringProvider;
+import com.helospark.tactview.core.timeline.effect.interpolation.provider.evaluator.EvaluationContext;
 import com.helospark.tactview.core.util.ReflectionUtil;
 
 @Component
@@ -48,27 +49,27 @@ public class FreiorParameterMapper {
         return result;
     }
 
-    public FreiorParameterRequest getCurrentParameterValues(List<KeyframeableEffect> keyframeableEffects, TimelinePosition timelinePosition) {
+    public FreiorParameterRequest getCurrentParameterValues(List<KeyframeableEffect> keyframeableEffects, TimelinePosition timelinePosition, EvaluationContext evaluationContext) {
         FreiorParameterRequest resultSingle = new FreiorParameterRequest();
         FreiorParameterRequest[] result = (FreiorParameterRequest[]) resultSingle.toArray(keyframeableEffects.size());
         for (int i = 0; i < keyframeableEffects.size(); ++i) {
             KeyframeableEffect provider = keyframeableEffects.get(i);
             if (provider instanceof DoubleProvider) {
-                result[i].x = ((DoubleProvider) provider).getValueAt(timelinePosition);
+                result[i].x = ((DoubleProvider) provider).getValueAt(timelinePosition, evaluationContext);
             } else if (provider instanceof ColorProvider) {
-                Color color = ((ColorProvider) provider).getValueAt(timelinePosition);
+                Color color = ((ColorProvider) provider).getValueAt(timelinePosition, evaluationContext);
                 result[i].r = (float) color.red;
                 result[i].g = (float) color.green;
                 result[i].b = (float) color.blue;
             } else if (provider instanceof BooleanProvider) {
-                boolean v = ((BooleanProvider) provider).getValueAt(timelinePosition);
+                boolean v = ((BooleanProvider) provider).getValueAt(timelinePosition, evaluationContext);
                 result[i].x = v ? 1.0 : 0.0;
             } else if (provider instanceof PointProvider) {
-                Point v = ((PointProvider) provider).getValueAt(timelinePosition);
+                Point v = ((PointProvider) provider).getValueAt(timelinePosition, evaluationContext);
                 result[i].x = v.x;
                 result[i].y = v.y;
             } else if (provider instanceof StringProvider) {
-                String v = ((StringProvider) provider).getValueAt(timelinePosition);
+                String v = ((StringProvider) provider).getValueAt(timelinePosition, evaluationContext);
                 result[i].string = v;
             } else {
                 throw new IllegalStateException("Unexpected class " + provider.getClass().getSimpleName());

@@ -105,7 +105,7 @@ public class FreiorProceduralClip extends ProceduralVisualClip {
         renderRequest.output = result.getBuffer();
         renderRequest.pluginIndex = pluginIndex;
         renderRequest.time = relativePosition.getSeconds().doubleValue();
-        renderRequest.parameters = freiorParameterMapper.getCurrentParameterValues(this.keyframeableEffects, relativePosition);
+        renderRequest.parameters = freiorParameterMapper.getCurrentParameterValues(this.keyframeableEffects, relativePosition, request.getEvaluationContext());
 
         synchronized (LOCK) {
             freiorNativeLibrary.render(renderRequest);

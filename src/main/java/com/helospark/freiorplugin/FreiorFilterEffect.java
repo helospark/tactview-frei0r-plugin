@@ -93,7 +93,7 @@ public class FreiorFilterEffect extends StatelessVideoEffect {
         renderRequest.output = result.getBuffer();
         renderRequest.pluginIndex = pluginIndex;
         renderRequest.time = request.getEffectPosition().getSeconds().doubleValue();
-        renderRequest.parameters = freiorParameterMapper.getCurrentParameterValues(this.keyframeableEffects, request.getEffectPosition());
+        renderRequest.parameters = freiorParameterMapper.getCurrentParameterValues(this.keyframeableEffects, request.getEffectPosition(), request.getEvaluationContext());
 
         synchronized (LOCK) {
             freiorNativeLibrary.render(renderRequest);
